@@ -2,8 +2,16 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
-from tags.models import TagGroup
+from tags.models import TagGroup, Tag
 from tags.forms import TagInline
+
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+
+    list_per_page = 100
+    list_display = ['text', 'group']
+    search_fields = ['text']
 
 
 @admin.register(TagGroup)
