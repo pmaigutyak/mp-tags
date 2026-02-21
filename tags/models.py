@@ -2,8 +2,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from modeltranslation.utils import get_translation_fields
-
 from model_search import model_search
 
 
@@ -22,7 +20,7 @@ class TagQuerySet(models.QuerySet):
         return model_search(
             query,
             self,
-            get_translation_fields('text')
+            ['text']
         )
 
 

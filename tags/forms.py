@@ -2,13 +2,12 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
 from django.contrib.admin.widgets import FilteredSelectMultiple
-
-from modeltranslation.admin import TranslationStackedInline
+from django.contrib.admin import StackedInline
 
 from tags.models import Tag, TagGroup
 
 
-class TagInline(TranslationStackedInline):
+class TagInline(StackedInline):
 
     model = Tag
 
