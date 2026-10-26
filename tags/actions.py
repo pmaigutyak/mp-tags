@@ -1,5 +1,6 @@
 
 from django.contrib import admin
+from django.contrib.admin.helpers import ACTION_CHECKBOX_NAME
 from django.shortcuts import render, redirect
 from django.utils.translation import gettext_lazy as _
 
@@ -23,11 +24,12 @@ def add_tag_groups(modeladmin, request, queryset):
             return redirect(request.get_full_path())
     else:
         initial = {
-            '_selected_action': data.getlist(admin.ACTION_CHECKBOX_NAME)
+            '_selected_action': data.getlist(ACTION_CHECKBOX_NAME)
         }
         form = AddTagGroupsForm(initial=initial)
 
     context = {
+        **admin.site.each_context(request),
         'items': queryset,
         'form': form,
         'action_name': 'add_tag_groups'
